@@ -44,15 +44,20 @@ async getUserAnalytics(userId: number): Promise<any> {
   /* -----------------------------------------------------
      LOCATION
   ----------------------------------------------------- */
-  async detectUserLocation(): Promise<{ lat: number; lon: number }> {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(
-        pos => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
-        err => reject(err),
-        { enableHighAccuracy: true }
-      );
-    });
-  }
+ async detectUserLocation(): Promise<{ lat: number; lon: number }> {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      pos => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+      err => reject(err),
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0     
+      }
+    );
+  });
+}
+
 
   async reverseGeocode(lat: number, lon: number): Promise<string> {
     const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
