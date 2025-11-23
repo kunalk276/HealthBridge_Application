@@ -1,0 +1,44 @@
+<nav class="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-4 bg-white shadow-md z-50">
+  <a routerLink="/" class="text-2xl font-bold text-blue-600">HealthBridge</a>
+
+  <div class="hidden md:flex items-center gap-6">
+    <!-- Admin Dashboard Link -->
+    <a *ngIf="isLoggedIn && isAdmin" routerLink="/admin" routerLinkActive="text-blue-600" class="hover:text-blue-600">
+      Admin Dashboard
+    </a>
+
+    
+    <!-- Login / Register Links -->
+    <ng-container *ngIf="!isLoggedIn">
+      <a routerLink="/login" routerLinkActive="text-blue-600" class="hover:text-blue-600"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+      <a routerLink="/register" routerLinkActive="text-blue-600" class="hover:text-blue-600"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+    </ng-container>
+
+    <!-- Logout Button -->
+    <button *ngIf="isLoggedIn" (click)="logout()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+      Logout
+    </button>
+  </div>
+
+  <!-- Mobile Menu Toggle -->
+  <button class="md:hidden text-2xl text-blue-600" (click)="toggleMenu()">
+    <i [ngClass]="menuOpen ? 'fa fa-times' : 'fa fa-bars'"></i>
+  </button>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="menuOpen" class="absolute top-full left-0 w-full bg-white shadow-lg flex flex-col items-center py-6 gap-4 md:hidden">
+    <a routerLink="/" (click)="closeMenu()" class="hover:text-blue-600">Home</a>
+
+    <ng-container *ngIf="!isLoggedIn">
+      <a routerLink="/login" (click)="closeMenu()" class="hover:text-blue-600"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
+      <a routerLink="/register" (click)="closeMenu()" class="hover:text-blue-600"><i class="fa-solid fa-user-plus"></i>Sign Up</a>
+    </ng-container>
+
+    <a *ngIf="isLoggedIn && isAdmin" routerLink="/admin" (click)="closeMenu()" class="hover:text-blue-600">Admin Dashboard</a>
+    <a *ngIf="isLoggedIn && !isAdmin" routerLink="/dashboard" (click)="closeMenu()" class="hover:text-blue-600">Dashboard</a>
+
+    <button *ngIf="isLoggedIn" (click)="logout(); closeMenu()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+      Logout
+    </button>
+  </div>
+</nav>

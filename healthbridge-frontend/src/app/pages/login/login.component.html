@@ -1,0 +1,79 @@
+<div class="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-100 via-indigo-200 to-blue-300">
+  <div
+    class="backdrop-blur-xl bg-white/40 border border-white/20 shadow-2xl rounded-2xl p-10 w-full max-w-md transition-all hover:scale-[1.01] duration-300">
+
+    <div class="text-center mb-8">
+      <div
+        class="mx-auto w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M16 12H8m8 0l-4-4m4 4l-4 4m0 0H8m4-4V8m0 8v4" />
+        </svg>
+      </div>
+      <h2 class="text-3xl font-semibold text-gray-800 drop-shadow-sm">Welcome Back</h2>
+      <p class="text-gray-600 mt-2 text-sm">Login to access your account</p>
+    </div>
+
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" class="space-y-5">
+
+      <!-- Username -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1"><i class="fa-solid fa-user"></i> Username</label>
+        <input type="text" [(ngModel)]="username" name="username" #usernameCtrl="ngModel"
+          placeholder="Enter your username"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+          required minlength="3" />
+        <p *ngIf="usernameCtrl.errors?.['required'] && usernameCtrl.touched" class="text-red-500 text-xs mt-1">
+          Username is required.
+        </p>
+        <p *ngIf="usernameCtrl.errors?.['minlength'] && usernameCtrl.touched" class="text-red-500 text-xs mt-1">
+          Username must be at least 3 characters.
+        </p>
+      </div>
+
+      <!-- Password -->
+      <div class="relative">
+        <label class="block text-gray-700 font-medium mb-1"><i class="fa-solid fa-key"></i> Password</label>
+        <input
+          [type]="isPasswordVisible ? 'text' : 'password'"
+          [(ngModel)]="password"
+          name="password"
+          #passwordCtrl="ngModel"
+          required
+          pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$"
+          placeholder="Enter your password"
+          class="w-full px-4 py-3 pr-11 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" />
+
+        <!-- Eye Icon -->
+        <i
+          class="fa cursor-pointer absolute right-3 top-1/2 transform -translate-y-[15%] text-gray-500 text-lg transition-colors duration-200 hover:text-indigo-600"
+          [ngClass]="isPasswordVisible ? 'fa-eye-slash' : 'fa-eye'"
+          (click)="togglePasswordVisibility()">
+        </i>
+
+        <p *ngIf="passwordCtrl.errors?.['required'] && passwordCtrl.touched" class="text-red-500 text-xs mt-1">
+          Password is required.
+        </p>
+        <p *ngIf="passwordCtrl.errors?.['pattern'] && passwordCtrl.touched" class="text-red-500 text-xs mt-1">
+          Must include uppercase, number & special character (8+ chars).
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="loginForm.invalid"
+        class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-semibold tracking-wide shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50">
+        Login
+      </button>
+
+      <p *ngIf="error" class="text-red-500 text-center mt-3 text-sm">{{ error }}</p>
+    </form>
+
+    <div class="text-center mt-6">
+      <p class="text-sm text-gray-600">
+        Don’t have an account?
+        <a routerLink="/register" class="text-indigo-600 font-medium hover:underline">Sign up</a>
+      </p>
+    </div>
+  </div>
+</div>

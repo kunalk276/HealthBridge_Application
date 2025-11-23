@@ -1,0 +1,41 @@
+{
+  "dashboard": {
+    "header": {
+      "welcome": "ਜੀ ਆਇਆਂ ਨੂੰ",
+      "location": "ਤੁਹਾਡਾ ਸਥਾਨ"
+    },
+    "analytics": {
+      "view": "ਵਿਸ਼ਲੇਸ਼ਣ ਵੇਖੋ",
+      "hide": "ਵਿਸ਼ਲੇਸ਼ਣ ਲੁਕਾਓ",
+      "loading": "ਵਿਸ਼ਲੇਸ਼ਣ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...",
+      "title": "ਸਿਹਤ ਵਿਸ਼ਲੇਸ਼ਣ",
+      "total_records": "ਕੁੱਲ ਰਿਕਾਰਡ",
+      "health_status": "ਸਿਹਤ ਦੀ ਸਥਿਤੀ",
+      "total_symptoms": "ਕੁੱਲ ਲੱਛਣ",
+      "severity_overview": "ਤੀਬਰਤਾ ਦਾ ਵੇਰਵਾ",
+      "common_symptoms": "ਆਮ ਲੱਛਣ",
+      "times": "ਵਾਰ",
+      "severity_breakdown": "ਤੀਬਰਤਾ ਦਾ ਵਿਭਾਜਨ",
+      "no_records": "ਕੋਈ ਰਿਕਾਰਡ ਨਹੀਂ"
+    },
+    "ai": {
+      "title": "ਏਆਈ ਲੱਛਣ ਸਹਾਇਕ",
+      "placeholder": "ਆਪਣੇ ਲੱਛਣ ਲਿਖੋ...",
+      "send": "ਭੇਜੋ",
+      "analyzing": "ਵਿਸ਼ਲੇਸ਼ਣ ਹੋ ਰਿਹਾ ਹੈ...",
+      "speak": "ਬੋਲੋ",
+      "stop": "ਰੋਕੋ",
+      "response": "ਏਆਈ ਜਵਾਬ",
+      "severity": "ਤੀਬਰਤਾ",
+      "sms": {
+        "sending": "ਐਮਰਜੈਂਸੀ SMS ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
+        "sent": "ਐਮਰਜੈਂਸੀ SMS ਸਫਲਤਾਪੂਰਵਕ ਭੇਜਿਆ ਗਿਆ!"
+      }
+    },
+    "hospitals": {
+      "title": "ਨੇੜਲੇ ਹਸਪਤਾਲ",
+      "no_contact": "ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ",
+      "view_map": "ਨਕਸ਼ੇ ‘ਤੇ ਵੇਖੋ"
+    }
+  }
+}

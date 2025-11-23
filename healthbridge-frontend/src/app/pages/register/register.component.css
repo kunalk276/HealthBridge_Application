@@ -1,0 +1,33 @@
+
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+
+input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+
+button {
+  cursor: pointer;
+}
+
+
+button.bg-gray-200:hover {
+  background-color: #e5e7eb;
+}
+
+
+.fa {
+  font-size: 1rem;
+}
+
+
+@media (max-width: 480px) {
+  .w-\[400px\] {
+    width: 95%;
+  }
+}

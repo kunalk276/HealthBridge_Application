@@ -1,0 +1,66 @@
+/* Tailwind directives should already be present:
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+
+/* Glass + gradient border + floating + soft shadows + blur helpers */
+:root{
+  --glass-bg: rgba(255,255,255,0.72);
+  --glass-border: rgba(255,255,255,0.65);
+  --muted: rgba(15,23,42,0.06);
+}
+.dark {
+  --glass-bg: rgba(14,18,23,0.48);
+  --glass-border: rgba(255,255,255,0.04);
+  --muted: rgba(255,255,255,0.03);
+}
+
+/* glass card */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid var(--glass-border);
+}
+
+/* gradient border helper */
+.gradient-border {
+  position: relative;
+  overflow: visible;
+}
+.gradient-border::before{
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, rgba(43,144,255,0.95), rgba(0,200,190,0.9));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* softer glass shadow */
+.shadow-glass {
+  box-shadow: 0 8px 30px rgba(16,24,40,0.08), inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* floating micro-interaction */
+.floating { transition: transform 280ms cubic-bezier(.2,.9,.3,1), box-shadow 280ms; }
+.floating:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(16,24,40,0.12); }
+
+/* subtle blur glow for backdrops */
+.blur-3xl { filter: blur(20px); }
+
+/* small button */
+.small-btn { background: linear-gradient(90deg, rgba(255,255,255,0.7), rgba(255,255,255,0.62)); }
+
+/* scrollbar styling for lists */
+ul::-webkit-scrollbar { width: 8px; height: 8px; }
+ul::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 9999px; }
+.dark ul::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.04); }
+
+/* utility: rounded-3xl if missing */
+.rounded-3xl { border-radius: 1.25rem; }

@@ -1,0 +1,104 @@
+<div class="p-6 pt-24 min-h-screen bg-gray-50">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-2xl font-bold">User Analytics • <span class="text-blue-600">{{ userName }}</span></h2>
+        <p class="text-sm text-gray-500">User ID: <span class="font-medium">{{ userId }}</span></p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button (click)="goBack()" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">
+          ← Back to Admin
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="text-center py-16">
+      <div class="animate-spin h-12 w-12 border-4 border-gray-200 border-t-blue-600 rounded-full mx-auto"></div>
+    </div>
+
+    <div *ngIf="!loading && !analytics" class="text-center py-16 text-gray-500">
+      No analytics found for this user.
+    </div>
+
+    <div *ngIf="!loading && analytics" class="space-y-8">
+
+      <!-- Cards -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl shadow border-l-4 border-blue-500">
+          <p class="text-sm text-gray-500">Total Records</p>
+          <p class="text-3xl font-bold text-blue-600 mt-2">{{ analytics.totalRecords }}</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow border-l-4 border-purple-500">
+          <p class="text-sm text-gray-500">Health Status</p>
+          <p class="text-xl font-bold text-purple-700 mt-2">{{ analytics.healthStatus }}</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow border-l-4 border-orange-500">
+          <p class="text-sm text-gray-500">Severity Overview</p>
+          <ul class="mt-2 space-y-1">
+            <li *ngFor="let s of getSeverityKeys()" class="flex justify-between">
+              <span>{{ s }}</span>
+              <span class="font-semibold">{{ analytics.severityDistribution[s] ?? 0 }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Charts + lists -->
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow">
+          <h4 class="font-semibold mb-4">Symptom Frequency</h4>
+          <div class="h-64 relative">
+            <canvas #symptomChart class="absolute inset-0"></canvas>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow">
+          <h4 class="font-semibold mb-4">Severity Distribution</h4>
+          <div class="h-64 relative">
+            <canvas #severityChart class="absolute inset-0"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Common Symptoms -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h4 class="text-lg font-bold mb-4">Common Symptoms</h4>
+
+        <div *ngIf="getSymptomKeys().length > 0" class="space-y-3 max-h-96 overflow-y-auto">
+          <div *ngFor="let key of getSymptomKeys()" class="p-4 border rounded-lg flex justify-between items-center">
+            <div class="text-sm font-medium">{{ key }}</div>
+            <div class="text-sm bg-blue-100 px-3 py-1 rounded-full font-semibold">{{ analytics.commonSymptoms[key] }} times</div>
+          </div>
+        </div>
+
+        <p *ngIf="!getSymptomKeys().length" class="text-gray-500 text-center">No symptom data available.</p>
+      </div>
+
+      <!-- Severity bars -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h4 class="text-lg font-bold mb-4">Severity Breakdown</h4>
+
+        <div class="space-y-4">
+          <div *ngFor="let s of getSeverityKeys()" class="flex items-center gap-4">
+            <span class="w-28 font-semibold">{{ s }}</span>
+            <div class="flex-1 bg-gray-200 rounded-full h-6">
+              <div class="h-6 rounded-full text-white text-xs flex items-center justify-end pr-2"
+                   [style.width.%]="(analytics.severityDistribution[s] / (analytics.totalRecords || 1)) * 100"
+                   [ngClass]="getSeverityColor(s)">
+                {{ analytics.severityDistribution[s] ?? 0 }}
+              </div>
+            </div>
+            <span class="w-16 text-right text-sm text-gray-600">
+              {{ (((analytics.severityDistribution[s] ?? 0) / (analytics.totalRecords || 1)) * 100).toFixed(1) }}%
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

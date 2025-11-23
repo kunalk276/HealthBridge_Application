@@ -1,0 +1,41 @@
+{
+  "dashboard": {
+    "header": {
+      "welcome": "Welcome",
+      "location": "Your location"
+    },
+    "analytics": {
+      "view": "View Analytics",
+      "hide": "Hide Analytics",
+      "loading": "Loading analytics...",
+      "title": "Health Analytics",
+      "total_records": "Total Records",
+      "health_status": "Health Status",
+      "total_symptoms": "Total Symptoms",
+      "severity_overview": "Severity Overview",
+      "common_symptoms": "Common Symptoms",
+      "times": "times",
+      "severity_breakdown": "Severity Breakdown",
+      "no_records": "No records available"
+    },
+    "ai": {
+      "title": "AI Symptom Assistant",
+      "placeholder": "Describe your symptoms here...",
+      "send": "Send",
+      "analyzing": "Analyzing...",
+      "speak": "Speak",
+      "stop": "Stop",
+      "response": "AI Response",
+      "severity": "Severity",
+      "sms": {
+        "sending": "Sending emergency SMS...",
+        "sent": "Emergency SMS sent successfully!"
+      }
+    },
+    "hospitals": {
+      "title": "Nearby Hospitals",
+      "no_contact": "No contact available",
+      "view_map": "View on Map"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+/* Keep the eye icon perfectly aligned in input */
+.relative .fa {
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-40%);
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.relative .fa:hover {
+  color: #4f46e5;
+  transform: translateY(-40%) scale(1.15);
+}
