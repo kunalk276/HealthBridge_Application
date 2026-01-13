@@ -43,4 +43,4 @@ HealthBridge helps users describe symptoms in their own language, get an AI-gene
 
 ## Repository
 GitHub: https://github.com/kunalk276/HealthBridge_Application.git  
-Demo Video: Add your link here
+Demo Video: https://drive.google.com/file/d/1dCMbMZmeeY7cwiOJJmgMEx7AwS08U_w_/view?usp=sharing
